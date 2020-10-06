@@ -1,0 +1,63 @@
+<html>
+<title>技能树</title>
+<style>
+.alsp{ font-family:"微软雅黑";}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #236B8E;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  width: 60px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  vertical-align:middle;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 10px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+</style>
+<head><script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script></head>
+<body>
+	<div class="alsp">
+  	<h3 style="text-align:center;color:#D2E9FF;font-size:25px>">请输入 人员信息_技能树_所在公司历程：</h3>
+	</div>
+	<p style="text-align:center">
+	<textarea cols="60" rows="10" id="text"></textarea>
+ 	</p>
+	<p style="text-align:center">
+	<button class="button"><span>提交</span></button>
+	</p>	 
+	<script>
+	d3.select("body").style("background-image","url(http://m.qpic.cn/psc?/V10sZkox0PHKFv/45NBuzDIW489QBoVep5mcXOf*hQuLVjekb.EU8i6vVmNweypCzfVB5*n5sKoygwcvjMhoF69rhAZ6Syg8UoIbq.41kLpF6FojGleAHZ*s4s!/b&bo=3AWEA9wFhAMBKQ4!&rf=viewer_4)")
+	</script>
+</body>
+</html>
