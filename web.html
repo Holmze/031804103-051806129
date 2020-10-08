@@ -67,9 +67,10 @@
 		var farther = new Map; 
 		var seen = [];
 		idx_list = [];
-		
+
+
+
 		// input data process
-		
 		arr_str = content.split("\n");
 		for (var idx = 0 ; idx < arr_str.length ; idx ++)
 		{
@@ -79,12 +80,15 @@
 			}
 		}
 
-		for (var idx1 = 0 ; idx1 < arr_str.length ; ) // layer 1
+
+
+		// get teacher and student relation
+		for (var idx1 = 0 ; idx1 < idx_list[0] ; ) // layer 1
 		{
 
-			var idx2 = arr_str.length;
-			console.log(arr_str);
-			console.log(idx2);
+			var idx2 = idx_list[0];
+			//console.log(arr_str);
+			//console.log(idx2);
 			/*	
 			for (idx2 = idx1 ; idx2 < arr_str.length ; idx2 ++)
 			{
@@ -103,13 +107,13 @@
 			// layer 2
 			for (idx3 = idx1 + 1 ; idx3 < idx2 ; idx3 ++)
 			{
-				for (var val of keyword) // (for of) is travel by values , (for in) is travel by keys 
+				for (var val of keyword) // (for of) is travel by values , (for in) is travel by keys
 				{
 					if (arr_str[idx3].indexOf(val) != -1)
 					{
 						//console.log(val);
 						var term2 = arr_str[idx3].split("：");
-						var temp = term2[0] + name;
+						var temp = term2[0];
 						//console.log(temp);
 						edge[name].push(temp);
 						edge[temp] = [];
@@ -127,18 +131,109 @@
 				{
 					//console.log(val);
 					edge[temp].push(val);
+					//edge[val] = [];
 					level[val] = term2[0];
 					farther[val] = 1;
 					seen.push(val);
-				} 
+				}
 			}
-			
+
 			idx1 = idx2 + 1;
-			
+
 		}
 			
-		console.log(edge);	
-			
+
+		//console.log(idx1,idx2,idx3) 6 5 5
+		//console.log(edge)
+
+
+
+
+
+		// get skills
+		var flag = 0;
+		for (idx3 = idx1 ; idx3 < idx_list[1] ; idx3 ++)
+		{
+		    for (var val of seen)
+			{
+			    if (edge.hasOwnProperty(val))
+				{
+				    var check = edge[val];
+				    for (var c of check)
+					{
+						var term2 = arr_str[idx3].split("：");
+						var temp = term2[0];
+						if (temp == c)
+						{
+							//console.log(temp,val);
+							flag = 1;
+						}
+						edge[temp] = [];
+						level[temp] = val;
+						farther[temp] = 1;
+						seen.push(temp);
+						break;
+					}
+
+                }
+				if (flag == 1) break;
+			}
+
+			var term3 = term2[1].split("、");
+		    for (var val of term3)
+				{
+					//console.log(val);
+					edge[temp].push(val);
+					level[val] = term2[0];
+					farther[val] = 1;
+					seen.push(val);
+				}
+
+		}
+		//console.log(edge);
+		//console.log(idx1,idx2,idx3);
+
+
+
+		// get work
+		var flag = 0;
+		for (idx3 = idx_list[1] + 1 ; idx3 < arr_str.length ; idx3 ++)
+		{
+		    for (var val of seen)
+			{
+			    if (edge.hasOwnProperty(val))
+				{
+				    var check = edge[val];
+				    for (var c of check)
+					{
+					    var term2 = arr_str[idx3].split("：");
+					    var temp = term2[0];
+					    if (c == temp)
+						{
+						    //console.log(val,c);
+						    flag = 1;
+						}
+						edge[temp] = [];
+					    level[temp] = val;
+					    farther[temp] = 1;
+					    seen.push(temp);
+					    break;
+					}
+					if (flag == 1) break;
+				}
+			}
+			var term3 = term2[1].split("、");
+		    for (var val of term3)
+			{
+				console.log(val);
+				edge[temp].push(val);
+				level[val] = temp;
+				farther[val] = 1;
+				seen.push(val);
+			}
+
+		}
+        console.log(edge);
 	}
 /*
 	function getTextareaValue()
