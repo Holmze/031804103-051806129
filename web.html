@@ -69,9 +69,9 @@
 		idx_list = [];
 
 
-
 		// input data process
 		arr_str = content.split("\n");
+		//arr_str = ["导师：张三", "2016级博士生：天一、王二、吴五", "2015级硕士生：李四、王五、许六", "2016级硕士生：刘一、李二、李三", "2017级本科生：刘六、琪七、司//四","", "刘六：JAVA、数学建模", "", "李二：字节跳动、京东云"]
 		for (var idx = 0 ; idx < arr_str.length ; idx ++)
 		{
 			if (arr_str[idx] == "")
@@ -80,195 +80,21 @@
 			}
 		}
 
-
-
 		// get teacher and student relation
 		for (var idx1 = 0 ; idx1 < idx_list[0] ; ) // layer 1
 		{
-
 			var idx2 = idx_list[0];
 			//console.log(arr_str);
 			//console.log(idx2);
-			/*	
-			for (idx2 = idx1 ; idx2 < arr_str.length ; idx2 ++)
-			{
-				if (arr_str == "")
-				{
-					break;
-				}
-			}
-			*/
 			// get teacher
 			var term1 = arr_str[idx1].split("：");
 			var name = term1[1];
 			edge[name] = [];
 			seen.push(name);
-
 			// layer 2
 			for (idx3 = idx1 + 1 ; idx3 < idx2 ; idx3 ++)
 			{
 				for (var val of keyword) // (for of) is travel by values , (for in) is travel by keys
-				{
-					if (arr_str[idx3].indexOf(val) != -1)
-					{
-						//console.log(val);
-						var term2 = arr_str[idx3].split("：");
-						var temp = term2[0];
-						//console.log(temp);
-						edge[name].push(temp);
-						edge[temp] = [];
-						level[temp] = val;
-						farther[temp] = 1;
-						seen.push(temp);
-						break;	
-					}
-					
-				}
-				
-				// layer 3
-				var term3 = term2[1].split("、");
-				for (var val of term3)
-				{
-					//console.log(val);
-					edge[temp].push(val);
-					//edge[val] = [];
-					level[val] = term2[0];
-					farther[val] = 1;
-					seen.push(val);
-				}
-			}
-
-			idx1 = idx2 + 1;
-
-		}
-			
-
-		//console.log(idx1,idx2,idx3) 6 5 5
-		//console.log(edge)
-
-
-
-
-
-		// get skills
-		var flag = 0;
-		for (idx3 = idx1 ; idx3 < idx_list[1] ; idx3 ++)
-		{
-		    for (var val of seen)
-			{
-			    if (edge.hasOwnProperty(val))
-				{
-				    var check = edge[val];
-				    for (var c of check)
-					{
-						var term2 = arr_str[idx3].split("：");
-						var temp = term2[0];
-						if (temp == c)
-						{
-							//console.log(temp,val);
-							flag = 1;
-						}
-						edge[temp] = [];
-						level[temp] = val;
-						farther[temp] = 1;
-						seen.push(temp);
-						break;
-					}
-
-                }
-				if (flag == 1) break;
-			}
-
-			var term3 = term2[1].split("、");
-		    for (var val of term3)
-				{
-					//console.log(val);
-					edge[temp].push(val);
-					level[val] = term2[0];
-					farther[val] = 1;
-					seen.push(val);
-				}
-
-		}
-		//console.log(edge);
-		//console.log(idx1,idx2,idx3);
-
-
-
-		// get work
-		var flag = 0;
-		for (idx3 = idx_list[1] + 1 ; idx3 < arr_str.length ; idx3 ++)
-		{
-		    for (var val of seen)
-			{
-			    if (edge.hasOwnProperty(val))
-				{
-				    var check = edge[val];
-				    for (var c of check)
-					{
-					    var term2 = arr_str[idx3].split("：");
-					    var temp = term2[0];
-					    if (c == temp)
-						{
-						    //console.log(val,c);
-						    flag = 1;
-						}
-						edge[temp] = [];
-					    level[temp] = val;
-					    farther[temp] = 1;
-					    seen.push(temp);
-					    break;
-					}
-					if (flag == 1) break;
-				}
-			}
-			var term3 = term2[1].split("、");
-		    for (var val of term3)
-			{
-				console.log(val);
-				edge[temp].push(val);
-				level[val] = temp;
-				farther[val] = 1;
-				seen.push(val);
-			}
-
-		}
-        console.log(edge);
-	}
-/*
-	function getTextareaValue()
-	{
-		var content = document.all.text.value;
-		var edge = new Map;
-		var keyword = ["导师：","级硕士生：","级本科生：","级博士生："];
-		var level = new Map;
-		var farther = new Map; 
-		var seen = [];
-
-		// input data process
-
-		arr_str = content.split("\n");
-		for (var idx1 = 0 ; idx1 < arr_str.length ; ) // layer 1
-		{
-
-			var idx2;
-			for (idx2 = idx1 ; idx2 < arr_str.length ; idx2 ++)
-			{
-				if (arr_str == "")
-				{
-					break;
-				}
-			}
-			// get teacher
-			var term1 = arr_str[idx1].split("：");
-			var name = term1[1];
-			edge[name] = [];
-			seen.push(name);
-
-			// layer 2
-			for (idx3 = idx1 + 1 ; idx3 < idx2 ; idx3 ++)
-			{
-				for (var val of keyword) // (for of) is travel by values , (for in) is travel by keys 
 				{
 					if (arr_str[idx3].indexOf(val) != -1)
 					{
@@ -283,35 +109,158 @@
 						seen.push(temp);
 						break;	
 					}
-					
 				}
-				
 				// layer 3
 				var term3 = term2[1].split("、");
 				for (var val of term3)
 				{
 					//console.log(val);
 					edge[temp].push(val);
+					//edge[val] = [];
 					level[val] = term2[0];
 					farther[val] = 1;
 					seen.push(val);
-				} 
+				}
 			}
-			
 			idx1 = idx2 + 1;
-			
 		}
-			
-		console.log(edge);	
-			
+		//console.log(idx1,idx2,idx3) 6 5 5
+		//console.log(edge)
+
+
+		// get skills
+		var flag = 0;
+		for (idx3 = idx1 ; idx3 < idx_list[1] ; idx3 ++)
+		{
+		    for (var val of seen)
+			{
+			    if (edge.hasOwnProperty(val))
+				{
+				    var check = edge[val];
+				    //console.log(val);
+				    for (var c of check)
+					{
+					    // val is farther
+						var term2 = arr_str[idx3].split("：");
+						var temp = term2[0] + val; // current and farther
+						//console.log(c);
+						//console.log(temp);
+
+						if (term2[0] == c)
+						{
+							//console.log(temp,val);
+							edge[term2[0]] = [];
+							level[temp] = val;
+							farther[temp] = 1;
+							seen.push(temp);
+							flag = 1;
+							break;
+						}
+					}
+                }
+				if (flag == 1) break;
+			}
+			var term3 = term2[1].split("、");
+		    for (var val of term3)
+				{
+					//console.log(val);
+					edge[term2[0]].push(val);
+					level[val] = term2[0];
+					farther[val] = 1;
+					seen.push(val);
+				}
+		}
+		//onsole.log(edge);
+		//console.log(idx1,idx2,idx3);
+
+
+		// get work
+		var flag = 0;
+		for (idx3 = idx_list[1] + 1 ; idx3 < arr_str.length ; idx3 ++)
+		{
+		    for (var val of seen)
+			{
+			    if (edge.hasOwnProperty(val))
+				{
+				    var check = edge[val];
+				    for (var c of check)
+					{
+					    var term2 = arr_str[idx3].split("：");
+
+					    var temp = term2[0] + val;
+
+					    if (term2[0] == c)
+						{
+						    //console.log(val,c);
+						    flag = 1;
+						    edge[term2[0]] = [];
+							level[temp] = val;
+							farther[temp] = 1;
+							seen.push(temp);
+							break;
+						}
+
+					}
+					if (flag == 1) break;
+				}
+			}
+			var term3 = term2[1].split("、");
+		    for (var val of term3)
+			{
+				//console.log(val);
+				edge[term2[0]].push(val);
+				level[val] = temp;
+				farther[val] = 1;
+				seen.push(val);
+			}
+		}
+		console.log(edge);
+
+
+		// find root node
+		for (var val of seen)
+		{
+			if (farther[val] == null)
+			{
+			    var root_name = val;
+			    //console.log(root);
+			}
+		}
+
+
+		function dfs(n,f) // construct object
+		{
+
+			var obj;
+			obj = {};
+			obj.name = n;
+			obj.children = [];
+			var item_list = edge[n];
+
+
+			if (item_list == null)
+			{
+			    console.log(n);
+			    return obj;
+			}
+
+			for (var i = 0 ; i < item_list.length ; i ++)
+			{
+				obj.children.push(dfs(item_list[i],n));
+			}
+
+			if (n.indexOf(f) != -1) // not farther
+			{
+			    var c = n.substring(0,n.indexOf(f));
+			    obj.name = c;
+			}
+
+			return obj;
+        }
+        var root = dfs(root_name,-1);
+		console.log(root);
+		//console.log(edge["刘六"])
 	}
-*/	
-
-		//arr_str = ["导师：张三", "2016级博士生：天一、王二、吴五", "2015级硕士生：李四、王五、许六", "2016级硕士生：刘一、李二、李三", "2017级本科生：刘六、琪七、司//四","", "刘六：JAVA、数学建模", "", "李二：字节跳动、京东云"]	
-		//console.log(arr_str);
-		
-
-
 
 
 	</script>
