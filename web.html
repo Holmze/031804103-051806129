@@ -1,6 +1,22 @@
 <html>
 <title>技能树</title>
 <style>
+ .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 1.5px;
+        }
+
+        .node {
+            font: 12px sans-serif;
+			stroke: steelblue;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2.5px;
+        }
 .alsp{ font-family:"微软雅黑";}
 .button {
   display: inline-block;
@@ -45,7 +61,7 @@
 
 
 </style>
-<head><script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script></head>
+<head><script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script></head>
 <body>
 	<div class="alsp">
   	<h3 style="text-align:center;color:#D2E9FF;font-size:25px>">请输入 人员信息_技能树_所在公司历程：</h3>
@@ -77,6 +93,7 @@
 			if (arr_str[idx] == "")
 			{
 				idx_list.push(idx);
+				//console.log(idx_list);
 			}
 		}
 
@@ -129,92 +146,90 @@
 
 
 		// get skills
-		var flag = 0;
-		for (idx3 = idx1 ; idx3 < idx_list[1] ; idx3 ++)
-		{
-		    for (var val of seen)
-			{
-			    if (edge.hasOwnProperty(val))
-				{
-				    var check = edge[val];
-				    //console.log(val);
-				    for (var c of check)
-					{
-					    // val is farther
-						var term2 = arr_str[idx3].split("：");
-						var temp = term2[0] + val; // current and farther
-						//console.log(c);
-						//console.log(temp);
 
-						if (term2[0] == c)
-						{
-							//console.log(temp,val);
-							edge[term2[0]] = [];
-							level[temp] = val;
-							farther[temp] = 1;
-							seen.push(temp);
-							flag = 1;
-							break;
-						}
-					}
+		if (idx_list.length == 2 )
+		{
+		    var term2;
+		    var temp;
+            var flag = 0;
+            for (idx3 = idx1; idx3 < idx_list[1]; idx3++) {
+                for (var val of seen) {
+                    if (edge.hasOwnProperty(val)) {
+                        var check = edge[val];
+                        //console.log(val);
+                        for (var c of check) {
+                            // val is farther
+                            term2 = arr_str[idx3].split("：");
+                            temp = term2[0] + val; // current and farther
+                            //console.log(c);
+
+                            if (term2[0] == c) {
+                                //console.log(temp,val);
+                                edge[term2[0]] = [];
+                                console.log(term2[0],edge[term2[0]]);
+                                level[temp] = val;
+                                farther[temp] = 1;
+                                seen.push(temp);
+                                flag = 1;
+                                break;
+                            }
+                        }
+                    }
+                    if (flag == 1) break;
                 }
-				if (flag == 1) break;
-			}
-			var term3 = term2[1].split("、");
-		    for (var val of term3)
-				{
-					//console.log(val);
-					edge[term2[0]].push(val);
-					level[val] = term2[0];
-					farther[val] = 1;
-					seen.push(val);
-				}
-		}
-		//onsole.log(edge);
+                var term3 = term2[1].split("、");
+                for (var val of term3) {
+                    //console.log(term2[0],edge[term2[0]]);
+                    edge[term2[0]].push(val);
+
+                    level[val] = term2[0];
+                    farther[val] = 1;
+                    seen.push(val);
+                }
+            }
+            console.log(edge["刘六"],edge["李四"]);
+        }
+//		console.log(edge);
 		//console.log(idx1,idx2,idx3);
 
-
 		// get work
-		var flag = 0;
-		for (idx3 = idx_list[1] + 1 ; idx3 < arr_str.length ; idx3 ++)
+		if (idx_list.length == 3)
 		{
-		    for (var val of seen)
-			{
-			    if (edge.hasOwnProperty(val))
-				{
-				    var check = edge[val];
-				    for (var c of check)
-					{
-					    var term2 = arr_str[idx3].split("：");
+            var flag = 0;
+            for (idx3 = idx_list[1] + 1; idx3 < arr_str.length; idx3++) {
+                for (var val of seen) {
+                    if (edge.hasOwnProperty(val)) {
+                        var check = edge[val];
+                        for (var c of check) {
+                            var term2 = arr_str[idx3].split("：");
 
-					    var temp = term2[0] + val;
+                            var temp = term2[0] + val;
 
-					    if (term2[0] == c)
-						{
-						    //console.log(val,c);
-						    flag = 1;
-						    edge[term2[0]] = [];
-							level[temp] = val;
-							farther[temp] = 1;
-							seen.push(temp);
-							break;
-						}
+                            if (term2[0] == c) {
+                                //console.log(val,c);
+                                flag = 1;
+                                edge[term2[0]] = [];
+                                level[temp] = val;
+                                farther[temp] = 1;
+                                seen.push(temp);
+                                break;
+                            }
 
-					}
-					if (flag == 1) break;
-				}
-			}
-			var term3 = term2[1].split("、");
-		    for (var val of term3)
-			{
-				//console.log(val);
-				edge[term2[0]].push(val);
-				level[val] = temp;
-				farther[val] = 1;
-				seen.push(val);
-			}
-		}
-		console.log(edge);
+                        }
+                        if (flag == 1) break;
+                    }
+                }
+                var term3 = term2[1].split("、");
+                for (var val of term3) {
+                    //console.log(val);
+                    edge[term2[0]].push(val);
+                    level[val] = temp;
+                    farther[val] = 1;
+                    seen.push(val);
+                }
+            }
+        }
+//		console.log(edge);
 
 
 		// find root node
@@ -226,6 +241,7 @@
 			    //console.log(root);
 			}
 		}
+		console.log(edge);
 
 
 		function dfs(n,f) // construct object
@@ -240,7 +256,8 @@
 
 			if (item_list == null)
 			{
-			    console.log(n);
+			    //console.log(n);
+			    return obj;
 			    return obj;
 			}
 
@@ -249,7 +266,7 @@
 				obj.children.push(dfs(item_list[i],n));
 			}
 
-			if (n.indexOf(f) != -1) // not farther
+			if (n.indexOf(f) != -1) // no farther
 			{
 			    var c = n.substring(0,n.indexOf(f));
 			    obj.name = c;
@@ -258,8 +275,176 @@
 			return obj;
         }
         var root = dfs(root_name,-1);
-		console.log(root);
+
+		//console.log(root);
 		//console.log(edge["刘六"])
+
+
+		// construct tree
+			var svg;
+			d3.selectAll("svg").remove();
+			var margin = {top: 30, right: 20, bottom: 20, left: 20},
+								width = 2300 - margin.right - margin.left,
+								height = 2300 - margin.top - margin.bottom;
+
+
+
+					var i = 0,
+					duration = 750;//过渡延迟时间
+
+
+				var tree = d3.layout.tree()//创建一个树布局
+					.size([height, width]);
+
+				var diagonal = d3.svg.diagonal()
+					.projection(function(d) { return [d.x, d.y]; });//创建新的斜线生成器
+
+
+				// Setup zoom and pan
+				var zoom = d3.behavior.zoom()
+					.scaleExtent([.1,1])
+					.on('zoom', function(){
+						svg.attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
+				});
+
+				//声明与定义画布属性
+				svg = d3.select("body").append("svg")
+					.attr("width", width + margin.right + margin.left)
+					.attr("height", height + margin.top + margin.bottom)
+					.call(zoom)
+					.append("g")
+					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+				//treeData为上边定义的节点属性
+				root.x0 = height / 2;
+				root.y0 = 0;
+
+				update(root);
+
+				d3.select(self.frameElement).style("height", "1600px");
+
+				function update(source) {
+
+				  // Compute the new tree layout.计算新树图的布局
+				  var nodes = tree.nodes(root).reverse(),
+					  links = tree.links(nodes);
+
+				  // Normalize for fixed-depth.设置y坐标点，每层占250px
+				  nodes.forEach(function(d) { d.y = d.depth * 250; });
+
+				  // Update the nodes…每个node对应一个group
+				  var node = svg.selectAll("g.node")
+					  .data(nodes, function(d) { return d.id || (d.id = ++i); });//data()：绑定一个数组到选择集上，数组的各项值分别与选择集的各元素绑定
+
+				  // Enter any new nodes at the parent's previous position.新增节点数据集，设置位置
+				  var nodeEnter = node.enter().append("g")  //在 svg 中添加一个g，g是 svg 中的一个属性，是 group 的意思，它表示一组什么东西，如一组 lines ， rects ，circles 其实坐标轴就是由这些东西构成的。
+					  .attr("class", "node") //attr设置html属性，style设置css属性
+					  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+					  .on("click", click);
+
+				  //添加连接点---此处设置的是圆圈过渡时候的效果（颜色）
+				  nodeEnter.append("rect")
+					.attr("x",-20)
+					.attr("y", -15)       //结点位置
+					.attr("width",50)      //矩形宽高
+					.attr("height",50)
+					.attr("rx",10)
+					.attr("fill", function(d){
+					//创建人物图片
+					var defs = svg.append("defs").attr("id", "imgdefs")
+
+					var catpattern = defs.append("pattern")
+											.attr("id", "pat")
+											.attr("height", 1)
+											.attr("width", 1)
+											.attr("patternContentUnits","objectBoundingBox")
+
+					catpattern.append("image")
+							.attr("width", "1")
+							.attr("height", "1")
+							.attr("xlink:href", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602258140788&di=e7a8f0c8efbe5285ae22cebebccde126&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201902%2F18%2F20190218122703_fluro.jpg")
+
+					return "url(#pat)";
+
+				})
+
+				  nodeEnter.append("text")
+					.attr("x", function(d) { return d.children || d._children ? 13 : 13; })
+					.attr("dy", "50")
+					.attr("text-anchor", "middle")
+					.text(function(d) { return d.name; })
+					.style("fill", "#2dbb8a")
+					.style("fill-opacity", 1);
+				  // Transition nodes to their new position.将节点过渡到一个新的位置-----主要是针对节点过渡过程中的过渡效果
+				  //node就是保留的数据集，为原来数据的图形添加过渡动画。首先是整个组的位置
+				  var nodeUpdate = node.transition()  //开始一个动画过渡
+					  .duration(duration)  //过渡延迟时间,此处主要设置的是圆圈节点随斜线的过渡延迟
+					  .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });//YES
+
+
+				  // Transition exiting nodes to the parent's new position.过渡现有的节点到父母的新位置。
+				  //最后处理消失的数据，添加消失动画
+				  var nodeExit = node.exit().transition()
+					  .duration(duration)
+					  .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })//YES
+					  .remove();
+
+				  // Update the links…线操作相关
+
+				  //再处理连线集合
+				  var link = svg.selectAll("path.link")
+					  .data(links, function(d) { return d.target.id; });
+
+
+				  // Enter any new links at the parent's previous position.
+				  //添加新的连线
+				  link.enter().insert("path", "g")
+					  .attr("class", "link")
+					  .attr("d", function(d) {
+						var o = {y: source.x0, x: source.y0};//YES
+						return diagonal({source: o, target: o});  //diagonal - 生成一个二维贝塞尔连接器, 用于节点连接图.
+					  })
+					.attr('marker-end', 'url(#arrow)');
+
+				  // Transition links to their new position.将斜线过渡到新的位置
+				  //保留的连线添加过渡动画
+				  link.transition()
+					  .duration(duration)
+					  .attr("d", diagonal);
+
+				  // Transition exiting nodes to the parent's new position.过渡现有的斜线到父母的新位置。
+				  //消失的连线添加过渡动画
+				  link.exit().transition()
+					  .duration(duration)
+					  .attr("d", function(d) {
+						var o = {x: source.x, y: source.y};//NO
+						return diagonal({source: o, target: o});
+					  })
+					  .remove();
+
+				  // Stash the old positions for transition.将旧的斜线过渡效果隐藏
+				  nodes.forEach(function(d) {
+					d.x0 = d.y;
+					d.y0 = d.x;
+				  });
+				}
+
+				//定义一个将某节点折叠的函数
+				// Toggle children on click.切换子节点事件
+				function click(d) {
+				  if (d.children) {
+					d._children = d.children;
+					d.children = null;
+				  } else {
+					d.children = d._children;
+					d._children = null;
+				  }
+				  update(d);
+				}
+
+
+
 	}
 
 
