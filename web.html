@@ -64,11 +64,11 @@
 <head><script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script></head>
 <body>
 	<div class="alsp">
-  	<h3 style="text-align:center;color:#D2E9FF;font-size:25px>">请输入 人员信息_技能树_所在公司历程：</h3>
+	<h3 style="text-align:center;color:#D2E9FF;font-size:25px">请输入：人员信息、技能树、职场历程：</h3>
 	</div>
 	<p style="text-align:center">
 	<textarea cols="60" rows="10" id="text"></textarea>
- 	</p>
+	</p>
 	<p style="text-align:center">
 	<button class="button" onclick="getTextareaValue()"><span>提交</span></button>
 	</p>	 
@@ -128,9 +128,9 @@
 				var student = layer1_item[1].split("、");
 				for (var stu of student)
 				{
-				    farther[stu] = layer1_node;
-				    stu = stu + layer1_node;
-				    farther[stu] = layer1_node;
+					farther[stu] = layer1_node;
+					stu = stu + layer1_node;
+					farther[stu] = layer1_node;
 					edge[layer1_node].push(stu);
 					farther_flag[stu] = 1;
 					seen.push(stu);
@@ -142,7 +142,7 @@
 
 		if (split_idx.length >= 2)
 		{
-		    for (idx3 = idx1 ; idx3 < split_idx[1] ; idx3 ++)
+			for (idx3 = idx1 ; idx3 < split_idx[1] ; idx3 ++)
 			{
 				var layer2_item = arr_str[idx3].split("：");
 				var current_f = farther[layer2_item[0]];
@@ -156,10 +156,10 @@
 				var skill_or_work = layer2_item[1].split("、");
 				for (var sw of skill_or_work)
 				{
-				    edge[layer2_node].push(sw);
-				    farther_flag[sw] = 1;
-				    seen.push(sw);
-				    seen_s_w[sw] = 1;
+					edge[layer2_node].push(sw);
+					farther_flag[sw] = 1;
+					seen.push(sw);
+					seen_s_w[sw] = 1;
 				}
 			}
 		}
@@ -169,22 +169,22 @@
 
 		if (split_idx.length == 3)
 		{
-		    for (idx3 = split_idx[1] + 1 ; idx3 < split_idx[2] ; idx3 ++)
+			for (idx3 = split_idx[1] + 1 ; idx3 < split_idx[2] ; idx3 ++)
 			{
-			    var layer3_item = arr_str[idx3].split("：");
-			    var current_f = farther[layer3_item[0]];
-			    var layer3_node = layer3_item[0] + current_f;
-			    edge[layer3_node] = [];
-			    farther_flag[layer3_node] = 1;
-			    seen.push(layer3_node);
+				var layer3_item = arr_str[idx3].split("：");
+				var current_f = farther[layer3_item[0]];
+				var layer3_node = layer3_item[0] + current_f;
+				edge[layer3_node] = [];
+				farther_flag[layer3_node] = 1;
+				seen.push(layer3_node);
 
-			    var work = layer3_item[1].split("、");
-			    for (var w of work)
+				var work = layer3_item[1].split("、");
+				for (var w of work)
 				{
-				    edge[layer3_node].push(w);
-				    farther_flag[w] = 1;
-				    seen.push(w);
-				    seen_s_w[w] = 1;
+					edge[layer3_node].push(w);
+					farther_flag[w] = 1;
+					seen.push(w);
+					seen_s_w[w] = 1;
 				}
 			}
 		}
@@ -195,7 +195,7 @@
 		{
 			if (farther_flag[val] == null)
 			{
-			    var root_name = val;
+				var root_name = val;
 			}
 		}
 		//console.log(root_name);
@@ -216,7 +216,7 @@
 				if (seen_s_w.hasOwnProperty(n) == false)
 				obj.name = n.substring(0,n.indexOf(f));
 
-			    return obj;
+				return obj;
 			}
 
 			for (var i = 0 ; i < item_list.length ; i ++)
@@ -226,8 +226,8 @@
 
 			if (n.indexOf(f) != -1) // no farther
 			{
-			    var c = n.substring(0,n.indexOf(f));
-			    obj.name = c;
+				var c = n.substring(0,n.indexOf(f));
+				obj.name = c;
 			}
 
 			return obj;
@@ -285,24 +285,24 @@
 				function update(source) {
 
 				  // Compute the new tree layout.计算新树图的布局
-				  var nodes = tree.nodes(root).reverse(),
-					  links = tree.links(nodes);
+				var nodes = tree.nodes(root).reverse(),
+					links = tree.links(nodes);
 
-				  // Normalize for fixed-depth.设置y坐标点，每层占250px
-				  nodes.forEach(function(d) { d.y = d.depth * 250; });
+				// Normalize for fixed-depth.设置y坐标点，每层占250px
+				nodes.forEach(function(d) { d.y = d.depth * 250; });
 
-				  // Update the nodes…每个node对应一个group
-				  var node = svg.selectAll("g.node")
-					  .data(nodes, function(d) { return d.id || (d.id = ++i); });//data()：绑定一个数组到选择集上，数组的各项值分别与选择集的各元素绑定
+				// Update the nodes…每个node对应一个group
+				var node = svg.selectAll("g.node")
+					.data(nodes, function(d) { return d.id || (d.id = ++i); });//data()：绑定一个数组到选择集上，数组的各项值分别与选择集的各元素绑定
 
-				  // Enter any new nodes at the parent's previous position.新增节点数据集，设置位置
-				  var nodeEnter = node.enter().append("g")  //在 svg 中添加一个g，g是 svg 中的一个属性，是 group 的意思，它表示一组什么东西，如一组 lines ， rects ，circles 其实坐标轴就是由这些东西构成的。
-					  .attr("class", "node") //attr设置html属性，style设置css属性
-					  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-					  .on("click", click);
+				// Enter any new nodes at the parent's previous position.新增节点数据集，设置位置
+				var nodeEnter = node.enter().append("g")  //在 svg 中添加一个g，g是 svg 中的一个属性，是 group 的意思，它表示一组什么东西，如一组 lines ， rects ，circles 其实坐标轴就是由这些东西构成的。
+					.attr("class", "node") //attr设置html属性，style设置css属性
+					.attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+					.on("click", click);
 
 				  //添加连接点---此处设置的是圆圈过渡时候的效果（颜色）
-				  nodeEnter.append("rect")
+					nodeEnter.append("rect")
 					.attr("x",-20)
 					.attr("y", -15)       //结点位置
 					.attr("width",50)      //矩形宽高
@@ -327,78 +327,78 @@
 
 				})
 
-				  nodeEnter.append("text")
+					nodeEnter.append("text")
 					.attr("x", function(d) { return d.children || d._children ? 13 : 13; })
 					.attr("dy", "50")
 					.attr("text-anchor", "middle")
 					.text(function(d) { return d.name; })
 					.style("fill", "#2dbb8a")
 					.style("fill-opacity", 1);
-				  // Transition nodes to their new position.将节点过渡到一个新的位置-----主要是针对节点过渡过程中的过渡效果
-				  //node就是保留的数据集，为原来数据的图形添加过渡动画。首先是整个组的位置
-				  var nodeUpdate = node.transition()  //开始一个动画过渡
-					  .duration(duration)  //过渡延迟时间,此处主要设置的是圆圈节点随斜线的过渡延迟
-					  .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });//YES
+				// Transition nodes to their new position.将节点过渡到一个新的位置-----主要是针对节点过渡过程中的过渡效果
+				//node就是保留的数据集，为原来数据的图形添加过渡动画。首先是整个组的位置
+				var nodeUpdate = node.transition()  //开始一个动画过渡
+					.duration(duration)  //过渡延迟时间,此处主要设置的是圆圈节点随斜线的过渡延迟
+					.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });//YES
 
 
-				  // Transition exiting nodes to the parent's new position.过渡现有的节点到父母的新位置。
-				  //最后处理消失的数据，添加消失动画
-				  var nodeExit = node.exit().transition()
-					  .duration(duration)
-					  .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })//YES
-					  .remove();
+				// Transition exiting nodes to the parent's new position.过渡现有的节点到父母的新位置。
+				//最后处理消失的数据，添加消失动画
+				var nodeExit = node.exit().transition()
+					.duration(duration)
+					.attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })//YES
+					.remove();
 
-				  // Update the links…线操作相关
+				// Update the links…线操作相关
 
-				  //再处理连线集合
-				  var link = svg.selectAll("path.link")
-					  .data(links, function(d) { return d.target.id; });
+				//再处理连线集合
+				var link = svg.selectAll("path.link")
+					.data(links, function(d) { return d.target.id; });
 
 
-				  // Enter any new links at the parent's previous position.
-				  //添加新的连线
-				  link.enter().insert("path", "g")
-					  .attr("class", "link")
-					  .attr("d", function(d) {
+				// Enter any new links at the parent's previous position.
+				//添加新的连线
+				link.enter().insert("path", "g")
+					.attr("class", "link")
+					.attr("d", function(d) {
 						var o = {y: source.x0, x: source.y0};//YES
 						return diagonal({source: o, target: o});  //diagonal - 生成一个二维贝塞尔连接器, 用于节点连接图.
-					  })
+					})
 					.attr('marker-end', 'url(#arrow)');
 
-				  // Transition links to their new position.将斜线过渡到新的位置
-				  //保留的连线添加过渡动画
-				  link.transition()
-					  .duration(duration)
-					  .attr("d", diagonal);
+				// Transition links to their new position.将斜线过渡到新的位置
+				//保留的连线添加过渡动画
+				link.transition()
+					.duration(duration)
+					.attr("d", diagonal);
 
-				  // Transition exiting nodes to the parent's new position.过渡现有的斜线到父母的新位置。
-				  //消失的连线添加过渡动画
-				  link.exit().transition()
-					  .duration(duration)
-					  .attr("d", function(d) {
+				// Transition exiting nodes to the parent's new position.过渡现有的斜线到父母的新位置。
+				//消失的连线添加过渡动画
+				link.exit().transition()
+					.duration(duration)
+					.attr("d", function(d) {
 						var o = {x: source.x, y: source.y};//NO
 						return diagonal({source: o, target: o});
-					  })
-					  .remove();
+					})
+					.remove();
 
-				  // Stash the old positions for transition.将旧的斜线过渡效果隐藏
-				  nodes.forEach(function(d) {
+				// Stash the old positions for transition.将旧的斜线过渡效果隐藏
+				nodes.forEach(function(d) {
 					d.x0 = d.y;
 					d.y0 = d.x;
-				  });
+				});
 				}
 
 				//定义一个将某节点折叠的函数
 				// Toggle children on click.切换子节点事件
 				function click(d) {
-				  if (d.children) {
+				if (d.children) {
 					d._children = d.children;
 					d.children = null;
-				  } else {
+				} else {
 					d.children = d._children;
 					d._children = null;
-				  }
-				  update(d);
+				}
+				update(d);
 				}
 
 
