@@ -162,13 +162,122 @@ for (var val of seen)
 //console.log(root_name);
 ```
 
-#### 4.3.4 学术家族树的缩放与拖动
+#### 4.3.4 DFS算法
+我们在处理完输入数据后，使用DFS（Depth First Search）算法按照输入格式代表的结点关系构建json树。
+```
+        function dfs(n,f) // construct object
+		{
+			console.log(n,f);
+			var obj;
+			obj = {};
+			obj.name = n;
+			obj.children = [];
+			var item_list = edge[n];
 
+
+			if (item_list == null)
+			{
+			    //console.log(n);
+				if (seen_s_w.hasOwnProperty(n) == false)
+				obj.name = n.substring(0,n.indexOf(f));
+
+				return obj;
+			}
+
+			for (var i = 0 ; i < item_list.length ; i ++)
+			{
+				obj.children.push(dfs(item_list[i],n));
+			}
+
+			if (n.indexOf(f) != -1) // no farther
+			{
+				var c = n.substring(0,n.indexOf(f));
+				obj.name = c;
+			}
+
+			return obj;
+        }
+```
 ## 5.附加特点设计与展示
-### 5.1 DFS
+### 5.1 学术家族树的缩放与拖动功能
+```
+// Transition nodes to their new position.将节点过渡到一个新的位置-----主要是针对节点过渡过程中的过渡效果
+//node就是保留的数据集，为原来数据的图形添加过渡动画。首先是整个组的位置
+var nodeUpdate = node.transition()  //开始一个动画过渡
+    .duration(duration)  //过渡延迟时间,此处主要设置的是圆圈节点随斜线的过渡延迟
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });//YES
+
+
+// Transition exiting nodes to the parent's new position.过渡现有的节点到父母的新位置。
+//最后处理消失的数据，添加消失动画
+var nodeExit = node.exit().transition()
+    .duration(duration)
+    .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })//YES
+    .remove();
+
+// Update the links…线操作相关
+
+//再处理连线集合
+var link = svg.selectAll("path.link")
+    .data(links, function(d) { return d.target.id; });
+
+
+// Enter any new links at the parent's previous position.
+//添加新的连线
+link.enter().insert("path", "g")
+    .attr("class", "link")
+    .attr("d", function(d) {
+        var o = {y: source.x0, x: source.y0};//YES
+        return diagonal({source: o, target: o});  //diagonal - 生成一个二维贝塞尔连接器, 用于节点连接图.
+    })
+    .attr('marker-end', 'url(#arrow)');
+
+// Transition links to their new position.将斜线过渡到新的位置
+//保留的连线添加过渡动画
+link.transition()
+    .duration(duration)
+    .attr("d", diagonal);
+
+// Transition exiting nodes to the parent's new position.过渡现有的斜线到父母的新位置。
+//消失的连线添加过渡动画
+link.exit().transition()
+    .duration(duration)
+    .attr("d", function(d) {
+        var o = {x: source.x, y: source.y};//NO
+        return diagonal({source: o, target: o});
+    })
+    .remove();
+
+// Stash the old positions for transition.将旧的斜线过渡效果隐藏
+nodes.forEach(function(d) {
+    d.x0 = d.y;
+    d.y0 = d.x;
+});
+}
+```
+### 5.2 学术家族树结点的折叠功能
+```
+//定义一个将某节点折叠的函数
+// Toggle children on click.切换子节点事件
+function click(d) {
+if (d.children) {
+    d._children = d.children;
+    d.children = null;
+} else {
+    d.children = d._children;
+    d._children = null;
+}
+update(d);
+}
+```
 ## 6.目录说明和使用说明
 ### 6.1 目录说明
 ![目录](./img/HTML%20Tree.jpg)
+- title部分保存页面标题，即显示在浏览器标签上的标题
+- style保存页面设计设计风格信息
+- 在head部分调用d3框架
+- 在body构建页面的具体部件以及部件信息
+  - body.spript中放置JavaScript代码作为后台运行代码
 ### 6.2 使用说明
 #### step1
 首先使用chrome浏览器打开web.html文件
