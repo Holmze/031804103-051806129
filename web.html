@@ -59,6 +59,15 @@
   right: 0;
 }
 
+	body {
+		background: url("http://m.qpic.cn/psc?/V10sZkox0PHKFv/ruAMsa53pVQWN7FLK88i5p.4rprgu28MSF4UqyBrl3UwCngxfE0HoJ1SSNtyeStEeGvm5fK4K3C.9zXJzx12*JFwYC6JXJR5KwPWrJH.sdQ!/b&bo=3AWEA9wFhAMBCS4!&rf=viewer_4") no-repeat center center fixed;
+		/*兼容浏览器版本*/
+		-webkit-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+
+
 
 </style>
 <head><script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script></head>
@@ -73,7 +82,7 @@
 	<button class="button" onclick="getTextareaValue()"><span>提交</span></button>
 	</p>	 
 	<script>
-	d3.select("body").style("background-image","url(http://m.qpic.cn/psc?/V10sZkox0PHKFv/45NBuzDIW489QBoVep5mcXOf*hQuLVjekb.EU8i6vVmNweypCzfVB5*n5sKoygwcvjMhoF69rhAZ6Syg8UoIbq.41kLpF6FojGleAHZ*s4s!/b&bo=3AWEA9wFhAMBKQ4!&rf=viewer_4)")
+	//d3.select("body").style("background-image","url(http://m.qpic.cn/psc?/V10sZkox0PHKFv/45NBuzDIW489QBoVep5mcXOf*hQuLVjekb.EU8i6vVmNweypCzfVB5*n5sKoygwcvjMhoF69rhAZ6Syg8UoIbq.41kLpF6FojGleAHZ*s4s!/b&bo=3AWEA9wFhAMBKQ4!&rf=viewer_4)")
 	function getTextareaValue()
 	{
 		var content = document.all.text.value;
