@@ -28,4 +28,5 @@ Test Report|测试报告|30|30
 Size Measurement|计算工作量|20| 20       
 Postmortem & Process Improvement Plan|事后总结, 并提出过程改进计划|20| 20|
 |合计||595|530|
-## 
+
+## 解题思路与设计实现
