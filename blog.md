@@ -289,9 +289,14 @@ update(d);
 在```提交```键下方出现学术家族树，并支持用鼠标的滚轮缩放以及鼠标拖动家族树
 ![](./img/instruction3.jpg)
 ## 7.单元测试
+### 7.1 mocha测试
 使用macha测试框架，使用教程-->[测试框架Mocha实例教程-阮一峰](ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html)
-![](./img/test.jpg)
-测试程序
+首先下载安装node.js [in here](http://nodejs.cn/download/)，然后通过NPM安装mocha库和chai：
+```
+npm install --g mocha
+npm install --g chai
+```
+接下来编写测试程序，测试将输入文本处理为json文件的函数，编写五个样例进行测试。
 ```
 var get_json = require('./web.js').get_json;
 var expect = require('chai').expect;
@@ -312,6 +317,10 @@ describe('测试数据处理函数', function() {
     });
 });
 ```
+![](./img/test.jpg)
+#### **详细mocha测试样例以及测试说明请看-->[GitHub README](https://github.com/Holmze/031804103-051806129)**
+### 7.2 coverage测试
+
 ## 8.GitHub记录
 ![](./img/github%20commit1.jpg)
 ![](./img/github%20commit2.jpg)
