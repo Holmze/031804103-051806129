@@ -290,6 +290,7 @@ update(d);
 ![](./img/instruction3.jpg)
 ## 7.单元测试
 使用macha测试框架
+![](./img/test.jpg)
 ## 8.GitHub记录
 ## 9.遇到的代码模块异常或结对困难及解决方法
 ## 10.评价你的队友

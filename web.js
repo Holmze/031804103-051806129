@@ -1,5 +1,5 @@
-function get_json(){
-    var content = document.all.text.value;
+function get_json(content){
+    // var content = document.all.text.value;
     var edge = new Map;
     var keyword = ["导师：","级硕士生：","级本科生：","级博士生："];
     var seen_s_w = new Map;
@@ -125,7 +125,7 @@ function get_json(){
 
     function dfs(n,f) // construct object
     {
-        console.log(n,f);
+        // console.log(n,f);
         var obj;
         obj = {};
         obj.name = n;
@@ -156,8 +156,12 @@ function get_json(){
         return obj;
     }
     var root = dfs(root_name,-1);
-    console.log(edge);
-    console.log(root);
+    // console.log(edge);
+    // console.log(root);
     //console.log(edge["刘六"])
+    // return root;
+    var json_str = JSON.stringify(root);
+    // console.log(json_str);
+    return json_str;
 }
-module.exports = get_json;
+module.exports.get_json = get_json;
