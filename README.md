@@ -35,6 +35,18 @@
 ```
 mocha web.test.js
 ```
+#### mocha test error issue
+若运行时出现：
+```
+Error: Cannot find module 'chai'
+Require stack:
+···
+```
+please run：
+```
+npm install --save-dev chai
+```
+and test again.
 ### 测试程序样例：
 ```
 //web.test.js
