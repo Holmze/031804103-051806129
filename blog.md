@@ -289,8 +289,37 @@ update(d);
 在```提交```键下方出现学术家族树，并支持用鼠标的滚轮缩放以及鼠标拖动家族树
 ![](./img/instruction3.jpg)
 ## 7.单元测试
-使用macha测试框架
+使用macha测试框架，使用教程-->[测试框架Mocha实例教程-阮一峰](ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html)
 ![](./img/test.jpg)
+测试程序
+```
+var get_json = require('./web.js').get_json;
+var expect = require('chai').expect;
+var str=`导师：张三
+2016级博士生：天一、王二、吴五
+2015级硕士生：李四、王五、许六
+2016级硕士生：刘一、李二、李三
+2017级本科生：刘六、琪七、司四
+
+刘六：JAVA、数学建模
+
+李二：字节跳动、京东云
+`;
+var ans='{"name":"张三","children":[{"name":"2016级博士生","children":[{"name":"天一","children":[]},{"name":"王二","children":[]},{"name":"吴五","children":[]}]},{"name":"2015级硕士生","children":[{"name":"李四","children":[]},{"name":"王五","children":[]},{"name":"许六","children":[]}]},{"name":"2016级硕士生","children":[{"name":"刘一","children":[]},{"name":"李二","children":[{"name":"字节跳动","children":[]},{"name":"京东云","children":[]}]},{"name":"李三","children":[]}]},{"name":"2017级本科生","children":[{"name":"刘六","children":[{"name":"JAVA","children":[]},{"name":"数学建模","children":[]}]},{"name":"琪七","children":[]},{"name":"司四","children":[]}]}]}';
+describe('测试数据处理函数', function() {
+    it('生成的字符串应该等于ans', function() {
+    expect(get_json(str)).to.be.equal(ans);
+    });
+});
+```
 ## 8.GitHub记录
+![](./img/github%20commit1.jpg)
+![](./img/github%20commit2.jpg)
+![](./img/github%20commit3.jpg)
 ## 9.遇到的代码模块异常或结对困难及解决方法
+### 1 对输入数据的处理（一开始不能处理多行数据）
+  原因：因为变量名和循环层数太多，所以在处理过程中搞混了变量名。（如前几版代码）
+因为目的是找出当前节点的父亲节点，所以解决方法是通过哈希表，省去了一顿变量和好多层循环，代码简洁许多。
+### 2 Json对象的建立（dfs过程中遇到的问题）
+一开始最后一层无法搜索到，发现原因是父亲节点没有存储好。解决方法依旧通过hash表存储父亲，然后直接访问，成功解决问题。建树过程主要是通过百度查找前辈们做过的精美树形结构然后进行综合起来参考。
 ## 10.评价你的队友

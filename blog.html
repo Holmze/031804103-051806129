@@ -1,0 +1,726 @@
+<!DOCTYPE html><html><head>
+      <title>blog</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\70406\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.13\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E7%AC%AC%E4%BA%8C%E6%AC%A1%E7%BB%93%E5%AF%B9%E4%BD%9C%E4%B8%9A">&#x7B2C;&#x4E8C;&#x6B21;&#x7ED3;&#x5BF9;&#x4F5C;&#x4E1A;</h1>
+
+<h2 class="mume-header" id="1information">1.Information</h2>
+
+<table>
+<thead>
+<tr>
+<th>&#x8FD9;&#x4E2A;&#x4F5C;&#x4E1A;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x8BFE;&#x7A0B;</th>
+<th><a href="https://edu.cnblogs.com/campus/fzu/SE2020">&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;2020&#x79CB;</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x8FD9;&#x4E2A;&#x4F5C;&#x4E1A;&#x8981;&#x6C42;&#x5728;&#x54EA;&#x91CC;</td>
+<td><a href="https://edu.cnblogs.com/campus/fzu/SE2020/homework/11277">&#x7B2C;&#x56DB;&#x6B21;&#x4F5C;&#x4E1A;&#xFF08;&#x7ED3;&#x5BF9;&#x7F16;&#x7A0B;&#x7B2C;&#x4E8C;&#x6B21;&#x4F5C;&#x4E1A;&#xFF09;</a></td>
+</tr>
+<tr>
+<td>&#x8FD9;&#x4E2A;&#x4F5C;&#x4E1A;&#x7684;&#x76EE;&#x6807;</td>
+<td>&#x953B;&#x70BC;&#x534F;&#x4F5C;&#x80FD;&#x529B;&#xFF0C;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#x529F;&#x80FD;</td>
+</tr>
+<tr>
+<td>&#x5B66;&#x53F7;</td>
+<td><strong><a href="https://www.cnblogs.com/holmze/">031804103</a></strong>&#x3001;<strong><a href="https://www.cnblogs.com/KJ-23/">051806129</a></strong></td>
+</tr>
+<tr>
+<td>GitHub address</td>
+<td><strong><a href="https://github.com/Holmze/031804103-051806129">031804103&amp;051806129</a></strong></td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="2%E5%88%86%E5%B7%A5">2.&#x5206;&#x5DE5;</h2>
+
+<ul>
+<li>&#x9648;&#xFF1A;&#x535A;&#x5BA2;&#x64B0;&#x5199;&#x3001;&#x4EE3;&#x7801;review&#x3001;&#x6D4B;&#x8BD5;&#x3001;GitHub&#x7BA1;&#x7406;</li>
+<li>&#x8C22;&#xFF1A;&#x7F16;&#x7801;&#x5B9E;&#x73B0;&#x3001;&#x6D4B;&#x8BD5;</li>
+</ul>
+<h2 class="mume-header" id="3psp">3.PSP</h2>
+
+<table>
+<thead>
+<tr>
+<th>PSP</th>
+<th style="text-align:center">Pair programming Process Stages</th>
+<th style="text-align:right">&#x9884;&#x4F30;&#x8017;&#x65F6;&#xFF08;&#x5206;&#x949F;&#xFF09;</th>
+<th style="text-align:right">&#x5B9E;&#x9645;&#x8017;&#x65F6;&#xFF08;&#x5206;&#x949F;&#xFF09;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planning</td>
+<td style="text-align:center">&#x8BA1;&#x5212;</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td>Estimate</td>
+<td style="text-align:center">&#x4F30;&#x8BA1;&#x8FD9;&#x4E2A;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x591A;&#x5C11;&#x65F6;&#x95F4;</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td>Development</td>
+<td style="text-align:center">&#x5F00;&#x53D1;</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">270</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td style="text-align:center">&#x9700;&#x6C42;&#x5206;&#x6790; (&#x5305;&#x62EC;&#x5B66;&#x4E60;&#x65B0;&#x6280;&#x672F;)</td>
+<td style="text-align:right">30</td>
+<td style="text-align:right">25</td>
+</tr>
+<tr>
+<td>Design Spec</td>
+<td style="text-align:center">&#x751F;&#x6210;&#x8BBE;&#x8BA1;&#x6587;&#x6863;</td>
+<td style="text-align:right">30</td>
+<td style="text-align:right">45</td>
+</tr>
+<tr>
+<td>Design Review</td>
+<td style="text-align:center">&#x8BBE;&#x8BA1;&#x590D;&#x5BA1;</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">25</td>
+</tr>
+<tr>
+<td>Coding Standard</td>
+<td style="text-align:center">&#x4EE3;&#x7801;&#x89C4;&#x8303; (&#x4E3A;&#x76EE;&#x524D;&#x7684;&#x5F00;&#x53D1;&#x5236;&#x5B9A;&#x5408;&#x9002;&#x7684;&#x89C4;&#x8303;)</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td>Design</td>
+<td style="text-align:center">&#x5177;&#x4F53;&#x8BBE;&#x8BA1;</td>
+<td style="text-align:right">120</td>
+<td style="text-align:right">150</td>
+</tr>
+<tr>
+<td>Coding</td>
+<td style="text-align:center">&#x5177;&#x4F53;&#x7F16;&#x7801;</td>
+<td style="text-align:right">180</td>
+<td style="text-align:right">240</td>
+</tr>
+<tr>
+<td>Code Review</td>
+<td style="text-align:center">&#x4EE3;&#x7801;&#x590D;&#x5BA1;</td>
+<td style="text-align:right">45</td>
+<td style="text-align:right">45</td>
+</tr>
+<tr>
+<td>Test</td>
+<td style="text-align:center">&#x6D4B;&#x8BD5;&#xFF08;&#x81EA;&#x6211;&#x6D4B;&#x8BD5;&#xFF0C;&#x4FEE;&#x6539;&#x4EE3;&#x7801;&#xFF0C;&#x63D0;&#x4EA4;&#x4FEE;&#x6539;&#xFF09;</td>
+<td style="text-align:right">30</td>
+<td style="text-align:right">45</td>
+</tr>
+<tr>
+<td>Reporting</td>
+<td style="text-align:center">&#x62A5;&#x544A;</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>Test Report</td>
+<td style="text-align:center">&#x6D4B;&#x8BD5;&#x62A5;&#x544A;</td>
+<td style="text-align:right">30</td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td>Size Measurement</td>
+<td style="text-align:center">&#x8BA1;&#x7B97;&#x5DE5;&#x4F5C;&#x91CF;</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">20</td>
+</tr>
+<tr>
+<td>Postmortem &amp; Process Improvement Plan</td>
+<td style="text-align:center">&#x4E8B;&#x540E;&#x603B;&#x7ED3;, &#x5E76;&#x63D0;&#x51FA;&#x8FC7;&#x7A0B;&#x6539;&#x8FDB;&#x8BA1;&#x5212;</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">20</td>
+</tr>
+<tr>
+<td>&#x5408;&#x8BA1;</td>
+<td style="text-align:center"></td>
+<td style="text-align:right">860</td>
+<td style="text-align:right">940</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="4%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0">4.&#x89E3;&#x9898;&#x601D;&#x8DEF;&#x4E0E;&#x8BBE;&#x8BA1;&#x5B9E;&#x73B0;</h2>
+
+<h3 class="mume-header" id="41-%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF">4.1 &#x5B9E;&#x73B0;&#x601D;&#x8DEF;</h3>
+
+<p>&#x4F7F;&#x7528;HTML+JavaScript+CSS&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#xFF0C;&#x5728;&#x6587;&#x672C;&#x6846;&#x63A5;&#x6536;&#x7279;&#x5B9A;&#x683C;&#x5F0F;&#x7684;&#x8F93;&#x5165;&#x4FE1;&#x606F;&#xFF08;&#x5177;&#x4F53;&#x7684;&#x8F93;&#x5165;&#x683C;&#x5F0F;&#x89C1;<a href="https://github.com/Holmze/031804103-051806129/blob/main/README.md">GitHub README</a>&#x6216; 6.2&#x90E8;&#x5206;&#xFF09;&#xFF0C;&#x5728;&#x540E;&#x53F0;&#x89E3;&#x6790;&#x6570;&#x636E;&#x4E3A;json&#x683C;&#x5F0F;&#xFF0C;&#x63D0;&#x53D6;&#x5173;&#x952E;&#x8BCD;&#x540E;&#x5F62;&#x6210;&#x7ED3;&#x70B9;&#xFF0C;&#x4ECE;&#x6839;&#x8282;&#x70B9;&#x5F00;&#x59CB;&#x5EFA;&#x7ACB;&#x5B66;&#x672F;&#x5BB6;&#x65CF;&#x6811;&#x3002;</p>
+<h3 class="mume-header" id="42-%E6%B5%81%E7%A8%8B%E5%9B%BE">4.2 &#x6D41;&#x7A0B;&#x56FE;</h3>
+
+<p><img src alt></p>
+<h3 class="mume-header" id="43-%E5%85%B3%E9%94%AE%E9%83%A8%E5%88%86%E5%AE%9E%E7%8E%B0">4.3 &#x5173;&#x952E;&#x90E8;&#x5206;&#x5B9E;&#x73B0;</h3>
+
+<h4 class="mume-header" id="431-%E8%B0%83%E7%94%A8d3%E6%A1%86%E6%9E%B6">4.3.1 &#x8C03;&#x7528;d3&#x6846;&#x67B6;</h4>
+
+<p>&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;d3&#x6846;&#x67B6;&#xFF0C;<strong>&#x4F7F;&#x7528;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x8054;&#x7F51;</strong>&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>&lt;head&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://d3js.org/d3.v3.min.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;
+</code></pre><h4 class="mume-header" id="432-%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE">4.3.2 &#x63A5;&#x6536;&#x6570;&#x636E;</h4>
+
+<p>&#x6587;&#x672C;&#x57DF;textarea&#x7528;&#x4E8E;&#x63A5;&#x6536;&#x8F93;&#x5165;&#x6570;&#x636E;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>&lt;p style=&quot;text-align:center&quot;&gt;
+    &lt;textarea cols=&quot;60&quot; rows=&quot;10&quot; id=&quot;text&quot;&gt;&lt;/textarea&gt;
+&lt;/p&gt;
+</code></pre><h4 class="mume-header" id="433-%E8%A7%A3%E6%9E%90%E6%95%B0%E6%8D%AE">4.3.3 &#x89E3;&#x6790;&#x6570;&#x636E;</h4>
+
+<p>&#x6211;&#x4EEC;&#x5728;&#x8F93;&#x5165;&#x683C;&#x5F0F;&#x4E2D;&#x89C4;&#x5B9A;&#xFF0C;&#x5C06;&#x8F93;&#x5165;&#x5206;&#x4E3A;&#xFF1A;<code>&#x4EBA;&#x9645;&#x5173;&#x7CFB;&#x6811;</code>&#x3001;<code>&#x4E2A;&#x4EBA;&#x6280;&#x80FD;</code>&#x3001;<code>&#x804C;&#x573A;&#x7ECF;&#x5386;</code>&#x4E09;&#x90E8;&#x5206;&#xFF0C;<strong>&#x6BCF;&#x90E8;&#x5206;&#x4E4B;&#x95F4;&#x7A7A;&#x884C;&#x5206;&#x9694;</strong>&#xFF0C;<mark>&#x8F93;&#x5165;&#x7ED3;&#x675F;&#x81F3;&#x5C11;&#x6709;&#x4E00;&#x4E2A;&#x7A7A;&#x884C;</mark>&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x6309;&#x7167;&#x7A7A;&#x884C;&#x5206;&#x5272;&#x8F93;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x6309;&#x7167;&#x5173;&#x952E;&#x5B57;&#x63D0;&#x53D6;&#x8282;&#x70B9;&#x4EE5;&#x53CA;&#x8282;&#x70B9;&#x4FE1;&#x606F;&#x548C;&#x5173;&#x7CFB;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>var content = document.all.text.value;
+var edge = new Map;
+var keyword = [&quot;&#x5BFC;&#x5E08;&#xFF1A;&quot;,&quot;&#x7EA7;&#x7855;&#x58EB;&#x751F;&#xFF1A;&quot;,&quot;&#x7EA7;&#x672C;&#x79D1;&#x751F;&#xFF1A;&quot;,&quot;&#x7EA7;&#x535A;&#x58EB;&#x751F;&#xFF1A;&quot;];
+var seen_s_w = new Map;
+var farther_flag = new Map;
+var seen = [];
+split_idx = [];
+var farther = new Map;
+
+// input data process
+arr_str = content.split(&quot;\n&quot;);
+var idx1;
+var idx2;
+var idx3;
+
+for (var idx = 0 ; idx &lt; arr_str.length ; idx ++ )
+{
+    if (arr_str[idx] == &quot;&quot;)
+    {
+        split_idx.push(idx);
+    }
+}
+
+// get teacher and student relation
+for (idx1 = 0 ; idx1 &lt; split_idx[0] ; ) // layer 1
+{
+    idx2 = split_idx[0];
+    // get teacher
+    var layer1_term = arr_str[idx1].split(&quot;&#xFF1A;&quot;);
+    var tutor_name = layer1_term[1];
+
+    edge[tutor_name] = [];
+    seen.push(tutor_name);
+    for (idx3 = idx1 + 1 ; idx3 &lt; idx2 ; idx3 ++)
+    {
+        var layer1_item = arr_str[idx3].split(&quot;&#xFF1A;&quot;);
+        var layer1_node = layer1_item[0] + tutor_name;
+        farther[layer1_item[0]] = tutor_name;
+        edge[tutor_name].push(layer1_node);
+        edge[layer1_node] = [];
+        farther_flag[layer1_node] = 1;
+        seen.push(layer1_node);
+        var student = layer1_item[1].split(&quot;&#x3001;&quot;);
+        for (var stu of student)
+        {
+            farther[stu] = layer1_node;
+            stu = stu + layer1_node;
+            farther[stu] = layer1_node;
+            edge[layer1_node].push(stu);
+            farther_flag[stu] = 1;
+            seen.push(stu);
+        }
+    }
+    idx1 = idx2 + 1;
+}
+//console.log(farther);
+if (split_idx.length &gt;= 2)
+{
+    for (idx3 = idx1 ; idx3 &lt; split_idx[1] ; idx3 ++)
+    {
+        var layer2_item = arr_str[idx3].split(&quot;&#xFF1A;&quot;);
+        var current_f = farther[layer2_item[0]];
+        var layer2_node = layer2_item[0] + current_f;
+        edge[layer2_node] = [];
+        farther_flag[layer2_node] = 1;
+        seen.push(layer2_node);
+        var skill_or_work = layer2_item[1].split(&quot;&#x3001;&quot;);
+        for (var sw of skill_or_work)
+        {
+            edge[layer2_node].push(sw);
+            farther_flag[sw] = 1;
+            seen.push(sw);
+            seen_s_w[sw] = 1;
+        }
+    }
+}
+//		console.log(edge);
+if (split_idx.length == 3)
+{
+    for (idx3 = split_idx[1] + 1 ; idx3 &lt; split_idx[2] ; idx3 ++)
+    {
+        var layer3_item = arr_str[idx3].split(&quot;&#xFF1A;&quot;);
+        var current_f = farther[layer3_item[0]];
+        var layer3_node = layer3_item[0] + current_f;
+        edge[layer3_node] = [];
+        farther_flag[layer3_node] = 1;
+        seen.push(layer3_node);
+        var work = layer3_item[1].split(&quot;&#x3001;&quot;);
+        for (var w of work)
+        {
+            edge[layer3_node].push(w);
+            farther_flag[w] = 1;
+            seen.push(w);
+            seen_s_w[w] = 1;
+        }
+    }
+}
+// find root node
+for (var val of seen)
+{
+    if (farther_flag[val] == null)
+    {
+        var root_name = val;
+    }
+}
+//console.log(root_name);
+</code></pre><h4 class="mume-header" id="434-dfs%E7%AE%97%E6%B3%95">4.3.4 DFS&#x7B97;&#x6CD5;</h4>
+
+<p>&#x6211;&#x4EEC;&#x5728;&#x5904;&#x7406;&#x5B8C;&#x8F93;&#x5165;&#x6570;&#x636E;&#x540E;&#xFF0C;&#x4F7F;&#x7528;DFS&#xFF08;Depth First Search&#xFF09;&#x7B97;&#x6CD5;&#x6309;&#x7167;&#x8F93;&#x5165;&#x683C;&#x5F0F;&#x4EE3;&#x8868;&#x7684;&#x7ED3;&#x70B9;&#x5173;&#x7CFB;&#x6784;&#x5EFA;json&#x6811;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>        function dfs(n,f) // construct object
+		{
+			console.log(n,f);
+			var obj;
+			obj = {};
+			obj.name = n;
+			obj.children = [];
+			var item_list = edge[n];
+
+
+			if (item_list == null)
+			{
+			    //console.log(n);
+				if (seen_s_w.hasOwnProperty(n) == false)
+				obj.name = n.substring(0,n.indexOf(f));
+
+				return obj;
+			}
+
+			for (var i = 0 ; i &lt; item_list.length ; i ++)
+			{
+				obj.children.push(dfs(item_list[i],n));
+			}
+
+			if (n.indexOf(f) != -1) // no farther
+			{
+				var c = n.substring(0,n.indexOf(f));
+				obj.name = c;
+			}
+
+			return obj;
+        }
+</code></pre><h2 class="mume-header" id="5%E9%99%84%E5%8A%A0%E7%89%B9%E7%82%B9%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%B1%95%E7%A4%BA">5.&#x9644;&#x52A0;&#x7279;&#x70B9;&#x8BBE;&#x8BA1;&#x4E0E;&#x5C55;&#x793A;</h2>
+
+<h3 class="mume-header" id="51-%E5%AD%A6%E6%9C%AF%E5%AE%B6%E6%97%8F%E6%A0%91%E7%9A%84%E7%BC%A9%E6%94%BE%E4%B8%8E%E6%8B%96%E5%8A%A8%E5%8A%9F%E8%83%BD">5.1 &#x5B66;&#x672F;&#x5BB6;&#x65CF;&#x6811;&#x7684;&#x7F29;&#x653E;&#x4E0E;&#x62D6;&#x52A8;&#x529F;&#x80FD;</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code>// Transition nodes to their new position.&#x5C06;&#x8282;&#x70B9;&#x8FC7;&#x6E21;&#x5230;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x4F4D;&#x7F6E;-----&#x4E3B;&#x8981;&#x662F;&#x9488;&#x5BF9;&#x8282;&#x70B9;&#x8FC7;&#x6E21;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x8FC7;&#x6E21;&#x6548;&#x679C;
+//node&#x5C31;&#x662F;&#x4FDD;&#x7559;&#x7684;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x4E3A;&#x539F;&#x6765;&#x6570;&#x636E;&#x7684;&#x56FE;&#x5F62;&#x6DFB;&#x52A0;&#x8FC7;&#x6E21;&#x52A8;&#x753B;&#x3002;&#x9996;&#x5148;&#x662F;&#x6574;&#x4E2A;&#x7EC4;&#x7684;&#x4F4D;&#x7F6E;
+var nodeUpdate = node.transition()  //&#x5F00;&#x59CB;&#x4E00;&#x4E2A;&#x52A8;&#x753B;&#x8FC7;&#x6E21;
+    .duration(duration)  //&#x8FC7;&#x6E21;&#x5EF6;&#x8FDF;&#x65F6;&#x95F4;,&#x6B64;&#x5904;&#x4E3B;&#x8981;&#x8BBE;&#x7F6E;&#x7684;&#x662F;&#x5706;&#x5708;&#x8282;&#x70B9;&#x968F;&#x659C;&#x7EBF;&#x7684;&#x8FC7;&#x6E21;&#x5EF6;&#x8FDF;
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; });//YES
+
+
+// Transition exiting nodes to the parent&apos;s new position.&#x8FC7;&#x6E21;&#x73B0;&#x6709;&#x7684;&#x8282;&#x70B9;&#x5230;&#x7236;&#x6BCD;&#x7684;&#x65B0;&#x4F4D;&#x7F6E;&#x3002;
+//&#x6700;&#x540E;&#x5904;&#x7406;&#x6D88;&#x5931;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6DFB;&#x52A0;&#x6D88;&#x5931;&#x52A8;&#x753B;
+var nodeExit = node.exit().transition()
+    .duration(duration)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + source.x + &quot;,&quot; + source.y + &quot;)&quot;; })//YES
+    .remove();
+
+// Update the links&#x2026;&#x7EBF;&#x64CD;&#x4F5C;&#x76F8;&#x5173;
+
+//&#x518D;&#x5904;&#x7406;&#x8FDE;&#x7EBF;&#x96C6;&#x5408;
+var link = svg.selectAll(&quot;path.link&quot;)
+    .data(links, function(d) { return d.target.id; });
+
+
+// Enter any new links at the parent&apos;s previous position.
+//&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x8FDE;&#x7EBF;
+link.enter().insert(&quot;path&quot;, &quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;link&quot;)
+    .attr(&quot;d&quot;, function(d) {
+        var o = {y: source.x0, x: source.y0};//YES
+        return diagonal({source: o, target: o});  //diagonal - &#x751F;&#x6210;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x8D1D;&#x585E;&#x5C14;&#x8FDE;&#x63A5;&#x5668;, &#x7528;&#x4E8E;&#x8282;&#x70B9;&#x8FDE;&#x63A5;&#x56FE;.
+    })
+    .attr(&apos;marker-end&apos;, &apos;url(#arrow)&apos;);
+
+// Transition links to their new position.&#x5C06;&#x659C;&#x7EBF;&#x8FC7;&#x6E21;&#x5230;&#x65B0;&#x7684;&#x4F4D;&#x7F6E;
+//&#x4FDD;&#x7559;&#x7684;&#x8FDE;&#x7EBF;&#x6DFB;&#x52A0;&#x8FC7;&#x6E21;&#x52A8;&#x753B;
+link.transition()
+    .duration(duration)
+    .attr(&quot;d&quot;, diagonal);
+
+// Transition exiting nodes to the parent&apos;s new position.&#x8FC7;&#x6E21;&#x73B0;&#x6709;&#x7684;&#x659C;&#x7EBF;&#x5230;&#x7236;&#x6BCD;&#x7684;&#x65B0;&#x4F4D;&#x7F6E;&#x3002;
+//&#x6D88;&#x5931;&#x7684;&#x8FDE;&#x7EBF;&#x6DFB;&#x52A0;&#x8FC7;&#x6E21;&#x52A8;&#x753B;
+link.exit().transition()
+    .duration(duration)
+    .attr(&quot;d&quot;, function(d) {
+        var o = {x: source.x, y: source.y};//NO
+        return diagonal({source: o, target: o});
+    })
+    .remove();
+
+// Stash the old positions for transition.&#x5C06;&#x65E7;&#x7684;&#x659C;&#x7EBF;&#x8FC7;&#x6E21;&#x6548;&#x679C;&#x9690;&#x85CF;
+nodes.forEach(function(d) {
+    d.x0 = d.y;
+    d.y0 = d.x;
+});
+}
+</code></pre><h3 class="mume-header" id="52-%E5%AD%A6%E6%9C%AF%E5%AE%B6%E6%97%8F%E6%A0%91%E7%BB%93%E7%82%B9%E7%9A%84%E6%8A%98%E5%8F%A0%E5%8A%9F%E8%83%BD">5.2 &#x5B66;&#x672F;&#x5BB6;&#x65CF;&#x6811;&#x7ED3;&#x70B9;&#x7684;&#x6298;&#x53E0;&#x529F;&#x80FD;</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code>//&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5C06;&#x67D0;&#x8282;&#x70B9;&#x6298;&#x53E0;&#x7684;&#x51FD;&#x6570;
+// Toggle children on click.&#x5207;&#x6362;&#x5B50;&#x8282;&#x70B9;&#x4E8B;&#x4EF6;
+function click(d) {
+if (d.children) {
+    d._children = d.children;
+    d.children = null;
+} else {
+    d.children = d._children;
+    d._children = null;
+}
+update(d);
+}
+</code></pre><h2 class="mume-header" id="6%E7%9B%AE%E5%BD%95%E8%AF%B4%E6%98%8E%E5%92%8C%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">6.&#x76EE;&#x5F55;&#x8BF4;&#x660E;&#x548C;&#x4F7F;&#x7528;&#x8BF4;&#x660E;</h2>
+
+<h3 class="mume-header" id="61-%E7%9B%AE%E5%BD%95%E8%AF%B4%E6%98%8E">6.1 &#x76EE;&#x5F55;&#x8BF4;&#x660E;</h3>
+
+<p><img src="./img/HTML%20Tree.jpg" alt="&#x76EE;&#x5F55;"></p>
+<ul>
+<li>title&#x90E8;&#x5206;&#x4FDD;&#x5B58;&#x9875;&#x9762;&#x6807;&#x9898;&#xFF0C;&#x5373;&#x663E;&#x793A;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x6807;&#x7B7E;&#x4E0A;&#x7684;&#x6807;&#x9898;</li>
+<li>style&#x4FDD;&#x5B58;&#x9875;&#x9762;&#x8BBE;&#x8BA1;&#x8BBE;&#x8BA1;&#x98CE;&#x683C;&#x4FE1;&#x606F;</li>
+<li>&#x5728;head&#x90E8;&#x5206;&#x8C03;&#x7528;d3&#x6846;&#x67B6;</li>
+<li>&#x5728;body&#x6784;&#x5EFA;&#x9875;&#x9762;&#x7684;&#x5177;&#x4F53;&#x90E8;&#x4EF6;&#x4EE5;&#x53CA;&#x90E8;&#x4EF6;&#x4FE1;&#x606F;
+<ul>
+<li>body.spript&#x4E2D;&#x653E;&#x7F6E;JavaScript&#x4EE3;&#x7801;&#x4F5C;&#x4E3A;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x4EE3;&#x7801;</li>
+</ul>
+</li>
+</ul>
+<h3 class="mume-header" id="62-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">6.2 &#x4F7F;&#x7528;&#x8BF4;&#x660E;</h3>
+
+<h4 class="mume-header" id="step1">step1</h4>
+
+<p>&#x9996;&#x5148;&#x4F7F;&#x7528;chrome&#x6D4F;&#x89C8;&#x5668;&#x6253;&#x5F00;web.html&#x6587;&#x4EF6;<br>
+<img src="./img/instruction1.jpg" alt></p>
+<h4 class="mume-header" id="step2">step2</h4>
+
+<p>&#x6309;&#x7167;&#x8F93;&#x5165;&#x683C;&#x5F0F;&#x5728;&#x6587;&#x672C;&#x6846;&#x8F93;&#x5165;&#x6587;&#x672C;&#xFF0C;&#x5E76;&#x70B9;&#x51FB;&#x4E0B;&#x65B9;&#x7684;<code>&#x63D0;&#x4EA4;</code>&#x952E;<br>
+<img src="./img/instruction2.jpg" alt></p>
+<h4 class="mume-header" id="step3">step3</h4>
+
+<p>&#x5728;<code>&#x63D0;&#x4EA4;</code>&#x952E;&#x4E0B;&#x65B9;&#x51FA;&#x73B0;&#x5B66;&#x672F;&#x5BB6;&#x65CF;&#x6811;&#xFF0C;&#x5E76;&#x652F;&#x6301;&#x7528;&#x9F20;&#x6807;&#x7684;&#x6EDA;&#x8F6E;&#x7F29;&#x653E;&#x4EE5;&#x53CA;&#x9F20;&#x6807;&#x62D6;&#x52A8;&#x5BB6;&#x65CF;&#x6811;<br>
+<img src="./img/instruction3.jpg" alt></p>
+<h2 class="mume-header" id="7%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">7.&#x5355;&#x5143;&#x6D4B;&#x8BD5;</h2>
+
+<p>&#x4F7F;&#x7528;macha&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#xFF0C;&#x4F7F;&#x7528;&#x6559;&#x7A0B;--&gt;<a href="ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html">&#x6D4B;&#x8BD5;&#x6846;&#x67B6;Mocha&#x5B9E;&#x4F8B;&#x6559;&#x7A0B;-&#x962E;&#x4E00;&#x5CF0;</a><br>
+<img src="./img/test.jpg" alt><br>
+&#x6D4B;&#x8BD5;&#x7A0B;&#x5E8F;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>var get_json = require(&apos;./web.js&apos;).get_json;
+var expect = require(&apos;chai&apos;).expect;
+var str=`&#x5BFC;&#x5E08;&#xFF1A;&#x5F20;&#x4E09;
+2016&#x7EA7;&#x535A;&#x58EB;&#x751F;&#xFF1A;&#x5929;&#x4E00;&#x3001;&#x738B;&#x4E8C;&#x3001;&#x5434;&#x4E94;
+2015&#x7EA7;&#x7855;&#x58EB;&#x751F;&#xFF1A;&#x674E;&#x56DB;&#x3001;&#x738B;&#x4E94;&#x3001;&#x8BB8;&#x516D;
+2016&#x7EA7;&#x7855;&#x58EB;&#x751F;&#xFF1A;&#x5218;&#x4E00;&#x3001;&#x674E;&#x4E8C;&#x3001;&#x674E;&#x4E09;
+2017&#x7EA7;&#x672C;&#x79D1;&#x751F;&#xFF1A;&#x5218;&#x516D;&#x3001;&#x742A;&#x4E03;&#x3001;&#x53F8;&#x56DB;
+
+&#x5218;&#x516D;&#xFF1A;JAVA&#x3001;&#x6570;&#x5B66;&#x5EFA;&#x6A21;
+
+&#x674E;&#x4E8C;&#xFF1A;&#x5B57;&#x8282;&#x8DF3;&#x52A8;&#x3001;&#x4EAC;&#x4E1C;&#x4E91;
+`;
+var ans=&apos;{&quot;name&quot;:&quot;&#x5F20;&#x4E09;&quot;,&quot;children&quot;:[{&quot;name&quot;:&quot;2016&#x7EA7;&#x535A;&#x58EB;&#x751F;&quot;,&quot;children&quot;:[{&quot;name&quot;:&quot;&#x5929;&#x4E00;&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x738B;&#x4E8C;&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x5434;&#x4E94;&quot;,&quot;children&quot;:[]}]},{&quot;name&quot;:&quot;2015&#x7EA7;&#x7855;&#x58EB;&#x751F;&quot;,&quot;children&quot;:[{&quot;name&quot;:&quot;&#x674E;&#x56DB;&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x738B;&#x4E94;&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x8BB8;&#x516D;&quot;,&quot;children&quot;:[]}]},{&quot;name&quot;:&quot;2016&#x7EA7;&#x7855;&#x58EB;&#x751F;&quot;,&quot;children&quot;:[{&quot;name&quot;:&quot;&#x5218;&#x4E00;&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x674E;&#x4E8C;&quot;,&quot;children&quot;:[{&quot;name&quot;:&quot;&#x5B57;&#x8282;&#x8DF3;&#x52A8;&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x4EAC;&#x4E1C;&#x4E91;&quot;,&quot;children&quot;:[]}]},{&quot;name&quot;:&quot;&#x674E;&#x4E09;&quot;,&quot;children&quot;:[]}]},{&quot;name&quot;:&quot;2017&#x7EA7;&#x672C;&#x79D1;&#x751F;&quot;,&quot;children&quot;:[{&quot;name&quot;:&quot;&#x5218;&#x516D;&quot;,&quot;children&quot;:[{&quot;name&quot;:&quot;JAVA&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x6570;&#x5B66;&#x5EFA;&#x6A21;&quot;,&quot;children&quot;:[]}]},{&quot;name&quot;:&quot;&#x742A;&#x4E03;&quot;,&quot;children&quot;:[]},{&quot;name&quot;:&quot;&#x53F8;&#x56DB;&quot;,&quot;children&quot;:[]}]}]}&apos;;
+describe(&apos;&#x6D4B;&#x8BD5;&#x6570;&#x636E;&#x5904;&#x7406;&#x51FD;&#x6570;&apos;, function() {
+    it(&apos;&#x751F;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5E94;&#x8BE5;&#x7B49;&#x4E8E;ans&apos;, function() {
+    expect(get_json(str)).to.be.equal(ans);
+    });
+});
+</code></pre><h2 class="mume-header" id="8github%E8%AE%B0%E5%BD%95">8.GitHub&#x8BB0;&#x5F55;</h2>
+
+<p><img src="./img/github%20commit1.jpg" alt><br>
+<img src="./img/github%20commit2.jpg" alt><br>
+<img src="./img/github%20commit3.jpg" alt></p>
+<h2 class="mume-header" id="9%E9%81%87%E5%88%B0%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A8%A1%E5%9D%97%E5%BC%82%E5%B8%B8%E6%88%96%E7%BB%93%E5%AF%B9%E5%9B%B0%E9%9A%BE%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">9.&#x9047;&#x5230;&#x7684;&#x4EE3;&#x7801;&#x6A21;&#x5757;&#x5F02;&#x5E38;&#x6216;&#x7ED3;&#x5BF9;&#x56F0;&#x96BE;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</h2>
+
+<h3 class="mume-header" id="1-%E5%AF%B9%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%84%E7%90%86%E4%B8%80%E5%BC%80%E5%A7%8B%E4%B8%8D%E8%83%BD%E5%A4%84%E7%90%86%E5%A4%9A%E8%A1%8C%E6%95%B0%E6%8D%AE">1 &#x5BF9;&#x8F93;&#x5165;&#x6570;&#x636E;&#x7684;&#x5904;&#x7406;&#xFF08;&#x4E00;&#x5F00;&#x59CB;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x591A;&#x884C;&#x6570;&#x636E;&#xFF09;</h3>
+
+<p>&#x539F;&#x56E0;&#xFF1A;&#x56E0;&#x4E3A;&#x53D8;&#x91CF;&#x540D;&#x548C;&#x5FAA;&#x73AF;&#x5C42;&#x6570;&#x592A;&#x591A;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x4E2D;&#x641E;&#x6DF7;&#x4E86;&#x53D8;&#x91CF;&#x540D;&#x3002;&#xFF08;&#x5982;&#x524D;&#x51E0;&#x7248;&#x4EE3;&#x7801;&#xFF09;<br>
+&#x56E0;&#x4E3A;&#x76EE;&#x7684;&#x662F;&#x627E;&#x51FA;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x7684;&#x7236;&#x4EB2;&#x8282;&#x70B9;&#xFF0C;&#x6240;&#x4EE5;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x662F;&#x901A;&#x8FC7;&#x54C8;&#x5E0C;&#x8868;&#xFF0C;&#x7701;&#x53BB;&#x4E86;&#x4E00;&#x987F;&#x53D8;&#x91CF;&#x548C;&#x597D;&#x591A;&#x5C42;&#x5FAA;&#x73AF;&#xFF0C;&#x4EE3;&#x7801;&#x7B80;&#x6D01;&#x8BB8;&#x591A;&#x3002;</p>
+<h3 class="mume-header" id="2-json%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BB%BA%E7%AB%8Bdfs%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">2 Json&#x5BF9;&#x8C61;&#x7684;&#x5EFA;&#x7ACB;&#xFF08;dfs&#x8FC7;&#x7A0B;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF09;</h3>
+
+<p>&#x4E00;&#x5F00;&#x59CB;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x65E0;&#x6CD5;&#x641C;&#x7D22;&#x5230;&#xFF0C;&#x53D1;&#x73B0;&#x539F;&#x56E0;&#x662F;&#x7236;&#x4EB2;&#x8282;&#x70B9;&#x6CA1;&#x6709;&#x5B58;&#x50A8;&#x597D;&#x3002;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x4F9D;&#x65E7;&#x901A;&#x8FC7;hash&#x8868;&#x5B58;&#x50A8;&#x7236;&#x4EB2;&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#xFF0C;&#x6210;&#x529F;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x3002;&#x5EFA;&#x6811;&#x8FC7;&#x7A0B;&#x4E3B;&#x8981;&#x662F;&#x901A;&#x8FC7;&#x767E;&#x5EA6;&#x67E5;&#x627E;&#x524D;&#x8F88;&#x4EEC;&#x505A;&#x8FC7;&#x7684;&#x7CBE;&#x7F8E;&#x6811;&#x5F62;&#x7ED3;&#x6784;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x7EFC;&#x5408;&#x8D77;&#x6765;&#x53C2;&#x8003;&#x3002;</p>
+<h2 class="mume-header" id="10%E8%AF%84%E4%BB%B7%E4%BD%A0%E7%9A%84%E9%98%9F%E5%8F%8B">10.&#x8BC4;&#x4EF7;&#x4F60;&#x7684;&#x961F;&#x53CB;</h2>
+
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
