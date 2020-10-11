@@ -1,8 +1,0 @@
-{
-    "scripts": {
-        "test": "nyc mocha --timeout=3000"
-    },
-    "devDependencies": {
-        "nyc": "^15.1.0"
-    }
-}
