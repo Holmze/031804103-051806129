@@ -4,11 +4,11 @@
 | ----------------- |--------------- | 
 | 这个作业要求在哪里| [第四次作业（结对编程第二次作业）](https://edu.cnblogs.com/campus/fzu/SE2020/homework/11277) | 
 | 这个作业的目标 | 锻炼协作能力，实现部分功能 |
-| 学号 | **[031804103](https://www.cnblogs.com/holmze/)**、**[051806129](https://www.cnblogs.com/KJ-23/)** |
+| 学号 | **[031804103](https://www.cnblogs.com/holmze/)** 、 **[051806129](https://www.cnblogs.com/KJ-23/)** |
 | GitHub address | **[031804103&051806129](https://github.com/Holmze/031804103-051806129)** |
 ## 2.分工
-- 陈：博客撰写、代码review、测试、GitHub管理
-- 谢：编码实现、测试
+- 陈翰泽：代码review、测试、撰写博客、GitHub管理与维护
+- 谢润锋：设计、编码实现
 ## 3.PSP
 PSP | Pair programming Process Stages | 预估耗时（分钟）|   实际耗时（分钟）
 --|:--:|--:|--:
@@ -31,10 +31,10 @@ Postmortem & Process Improvement Plan|事后总结, 并提出过程改进计划|
 
 ## 4.解题思路与设计实现
 ### 4.1 实现思路
-使用HTML+JavaScript+CSS创建一个网页，在文本框接收特定格式的输入信息（具体的输入格式见[GitHub README](https://github.com/Holmze/031804103-051806129/blob/main/README.md)或 6.2部分），在后台解析数据为json格式，提取关键词后形成结点，从根节点开始建立学术家族树。
+使用HTML+JavaScript+CSS创建一个网页，在文本框接收特定格式的输入信息（具体的输入格式见[GitHub README](https://github.com/Holmze/031804103-051806129/blob/main/README.md)或 6.2部分），在后台解析数据为json格式，提取关键词后形成节点，从根节点开始建立学术家族树。
 
 ### 4.2 流程图
-![]()
+![](./img/chart.jpg)
 ### 4.3 关键部分实现
 
 #### 4.3.1 调用d3框架
@@ -84,7 +84,6 @@ for (idx1 = 0 ; idx1 < split_idx[0] ; ) // layer 1
     // get teacher
     var layer1_term = arr_str[idx1].split("：");
     var tutor_name = layer1_term[1];
-
     edge[tutor_name] = [];
     seen.push(tutor_name);
     for (idx3 = idx1 + 1 ; idx3 < idx2 ; idx3 ++)
@@ -161,53 +160,44 @@ for (var val of seen)
 }
 //console.log(root_name);
 ```
-
 #### 4.3.4 DFS算法
-我们在处理完输入数据后，使用DFS（Depth First Search）算法按照输入格式代表的结点关系构建json树。
+我们在处理完输入数据后，使用DFS（Depth First Search）算法按照输入格式代表的节点关系构建json树。
 ```
-        function dfs(n,f) // construct object
-		{
-			console.log(n,f);
-			var obj;
-			obj = {};
-			obj.name = n;
-			obj.children = [];
-			var item_list = edge[n];
-
-
-			if (item_list == null)
-			{
-			    //console.log(n);
-				if (seen_s_w.hasOwnProperty(n) == false)
-				obj.name = n.substring(0,n.indexOf(f));
-
-				return obj;
-			}
-
-			for (var i = 0 ; i < item_list.length ; i ++)
-			{
-				obj.children.push(dfs(item_list[i],n));
-			}
-
-			if (n.indexOf(f) != -1) // no farther
-			{
-				var c = n.substring(0,n.indexOf(f));
-				obj.name = c;
-			}
-
-			return obj;
-        }
+function dfs(n,f) // construct object
+{
+    console.log(n,f);
+    var obj;
+    obj = {};
+    obj.name = n;
+    obj.children = [];
+    var item_list = edge[n];
+    if (item_list == null)
+    {
+        //console.log(n);
+        if (seen_s_w.hasOwnProperty(n) == false)
+        obj.name = n.substring(0,n.indexOf(f));
+        return obj;
+    }
+    for (var i = 0 ; i < item_list.length ; i ++)
+    {
+        obj.children.push(dfs(item_list[i],n));
+    }
+    if (n.indexOf(f) != -1) // no farther
+    {
+        var c = n.substring(0,n.indexOf(f));
+        obj.name = c;
+    }
+    return obj;
+}
 ```
 ## 5.附加特点设计与展示
 ### 5.1 学术家族树的缩放与拖动功能
 ```
-// Transition nodes to their new position.将节点过渡到一个新的位置-----主要是针对节点过渡过程中的过渡效果
-//node就是保留的数据集，为原来数据的图形添加过渡动画。首先是整个组的位置
+// Transition nodes to their new position.节点过渡过程中的过渡效果
+//为图形添加过渡动画
 var nodeUpdate = node.transition()  //开始一个动画过渡
     .duration(duration)  //过渡延迟时间,此处主要设置的是圆圈节点随斜线的过渡延迟
     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });//YES
-
-
 // Transition exiting nodes to the parent's new position.过渡现有的节点到父母的新位置。
 //最后处理消失的数据，添加消失动画
 var nodeExit = node.exit().transition()
@@ -216,12 +206,9 @@ var nodeExit = node.exit().transition()
     .remove();
 
 // Update the links…线操作相关
-
 //再处理连线集合
 var link = svg.selectAll("path.link")
     .data(links, function(d) { return d.target.id; });
-
-
 // Enter any new links at the parent's previous position.
 //添加新的连线
 link.enter().insert("path", "g")
@@ -231,13 +218,11 @@ link.enter().insert("path", "g")
         return diagonal({source: o, target: o});  //diagonal - 生成一个二维贝塞尔连接器, 用于节点连接图.
     })
     .attr('marker-end', 'url(#arrow)');
-
 // Transition links to their new position.将斜线过渡到新的位置
 //保留的连线添加过渡动画
 link.transition()
     .duration(duration)
     .attr("d", diagonal);
-
 // Transition exiting nodes to the parent's new position.过渡现有的斜线到父母的新位置。
 //消失的连线添加过渡动画
 link.exit().transition()
@@ -247,7 +232,6 @@ link.exit().transition()
         return diagonal({source: o, target: o});
     })
     .remove();
-
 // Stash the old positions for transition.将旧的斜线过渡效果隐藏
 nodes.forEach(function(d) {
     d.x0 = d.y;
@@ -255,7 +239,7 @@ nodes.forEach(function(d) {
 });
 }
 ```
-### 5.2 学术家族树结点的折叠功能
+### 5.2 学术家族树节点的折叠功能
 ```
 //定义一个将某节点折叠的函数
 // Toggle children on click.切换子节点事件
@@ -283,15 +267,40 @@ update(d);
 首先使用chrome浏览器打开web.html文件
 ![](./img/instruction1.jpg)
 #### step2
-按照输入格式在文本框输入文本，并点击下方的```提交```键
+按照输入格式在文本框输入文本，输入部分主要是：
+- 师生关系
+- 技能
+- 工作
+
+每个部分之间需用一个换行符分开，如果输入结束就在末尾加一个回车加以表示。支持的数据输入组合为：师生关系，师生关系+技能，师生关系+工作，师生关系+技能+工作，
+例如：
+```
+导师：张三
+2016级博士生：天一、王二、吴五
+2015级硕士生：李四、王五、许六
+2016级硕士生：刘一、李二、李三
+2017级本科生：刘六、琪七、司四
+
+刘六：JAVA、数学建模
+李四：PYTHON、VUE
+
+李二：字节跳动、京东云
+刘一：阿里
+
+```
+输入完毕后点击下方的*```提交```*键。
 ![](./img/instruction2.jpg)
 #### step3
-在```提交```键下方出现学术家族树，并支持用鼠标的滚轮缩放以及鼠标拖动家族树
+在```提交```键下方出现学术家族树，并支持用鼠标的滚轮缩放以及鼠标拖动家族树，点击节点可以折叠此节点的所有子节点。
 ![](./img/instruction3.jpg)
-## 7.单元测试
+## 7.mocha测试
 使用macha测试框架，使用教程-->[测试框架Mocha实例教程-阮一峰](ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html)
-![](./img/test.jpg)
-测试程序
+首先下载安装node.js [in here](http://nodejs.cn/download/)，然后通过NPM安装mocha库和chai：
+```
+npm install --g mocha
+npm install --g chai
+```
+接下来编写测试程序，测试将输入文本处理为json文件的函数，编写五个样例进行测试。
 ```
 var get_json = require('./web.js').get_json;
 var expect = require('chai').expect;
@@ -312,14 +321,21 @@ describe('测试数据处理函数', function() {
     });
 });
 ```
+![](./img/test.jpg)
+#### **更多mocha测试样例以及测试说明请看===>[README.md](https://github.com/Holmze/031804103-051806129)**
 ## 8.GitHub记录
 ![](./img/github%20commit1.jpg)
 ![](./img/github%20commit2.jpg)
 ![](./img/github%20commit3.jpg)
 ## 9.遇到的代码模块异常或结对困难及解决方法
 ### 1 对输入数据的处理（一开始不能处理多行数据）
-  原因：因为变量名和循环层数太多，所以在处理过程中搞混了变量名。（如前几版代码）
-因为目的是找出当前节点的父亲节点，所以解决方法是通过哈希表，省去了一顿变量和好多层循环，代码简洁许多。
+原因：因为变量名和循环层数太多，所以在处理过程中搞混了变量名。（如前几版代码）因为目的是找出当前节点的父亲节点，所以解决方法是通过哈希表，省去了一顿变量和好多层循环，代码简洁许多。
 ### 2 Json对象的建立（dfs过程中遇到的问题）
 一开始最后一层无法搜索到，发现原因是父亲节点没有存储好。解决方法依旧通过hash表存储父亲，然后直接访问，成功解决问题。建树过程主要是通过百度查找前辈们做过的精美树形结构然后进行综合起来参考。
 ## 10.评价你的队友
+- 陈翰泽：谢大佬思路清晰，执行能力强，交流能力出色。
+  - 队友值得学习的地方：清晰且宽广的思路，以及高效的执行编码能力。
+  - 队友需要改进的地方：变量名和函数名的设置有待提高，或者说是我跟不上大佬的思维吧。
+- 谢润锋：翰泽巨佬写博客小能手，github6的一匹，沟通积极并且及时。
+  - 队友值得学习的地方：他写博客的技巧很多表述也很清晰，并且有很高的GitHub的熟练度，需要我认真学习。
+  - 队友需要改进的地方：因为我们分工明确，并且出现问题能够及时互通，所以这次任务完成的较为顺利，没有较大的缺陷，只是阅读代码的能力有待提高。
